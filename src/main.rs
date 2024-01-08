@@ -21,10 +21,20 @@ fn main() {
         .expect("Failed to read line.");//if error, print this
         //interesting way of coding
 
-        let guess: u32 = guess
+        /*let guess: u32 = guess
         .trim()
         .parse()
-        .expect("Please type a number.");
+        .expect("Please type a number.");*/
+
+        let guess: u32 = match guess
+        .trim()
+        .parse(){
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter a number.\n");
+                continue;
+            }
+        };
 
         match guess.cmp(&secret_num){
             Ordering::Greater => println!("Too Big.\n"),
